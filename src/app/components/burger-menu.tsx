@@ -10,7 +10,7 @@ export function BurgerMenu() {
   };
 
   return (
-    <div className="md:hidden" id="burger-menu">
+    <div className="md:hidden ml-auto" id="burger-menu">
       <button onClick={toggleMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

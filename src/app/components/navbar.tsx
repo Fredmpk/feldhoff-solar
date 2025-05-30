@@ -7,28 +7,25 @@ export function Navbar() {
       <nav className="flex items-center justify-between align-items text-lg md:text-2xl tracking-wide h-16 sm:h-20 px-3 max-w-screen overflow-hidden">
         <Link
           href="/"
-          className="absolute left-1/2 transform -translate-x-1/2 aspect-square  h-10 sm:h-12 "
+          className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-auto md:transform-none md:-translate-x-0 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2"
         >
-          <img src="/img/erdmannlogo.png"></img>
+          <img
+            className="w-auto h-16 object-contain sm:p-3"
+            src="/img/logo-cut.png"
+          ></img>
         </Link>
 
-        <ul
-          className="items-center gap-4 lg:gap-9 hidden md:flex"
-          id="navbar__right"
-        >
-          <li>
-            <Link href="/#products">Modelle</Link>
-          </li>
+        <ul className="items-center gap-4 lg:gap-9 hidden md:flex ml-auto">
           <li>
             <Link href="/#gallery">Galerie</Link>
           </li>
+          <li>
+            <Link href="/#about">Über uns</Link>
+          </li>
 
           <li>
-            <Link href="/#about">About</Link>
+            <Link href="/#contact">Kontakt</Link>
           </li>
-          {/* <li>
-          <a href="#friends">Friends</a>
-        </li> */}
         </ul>
         <BurgerMenu />
       </nav>
