@@ -1,10 +1,22 @@
+import { urlFor } from "@/sanity/imageUrlBuilder";
+import { sanityFetch } from "@/sanity/live";
+import { HERO_QUERY } from "@/sanity/queries";
+import { HERO_QUERYResult } from "@/sanity/types";
 import Link from "next/link";
+import React from "react";
 
-export function Hero() {
+export async function Hero() {
+  const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
+    data: HERO_QUERYResult;
+  };
+
+  console.log(hero);
   return (
     <section
-      className="pt-20 sm:pt-32 bg-[url('/img/hero-bg.png')] 
-    bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col  items-center"
+      className="pt-20 sm:pt-32 bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col items-center"
+      style={{
+        backgroundImage: `url(${urlFor(hero?.heroImage).url()})`,
+      }}
     >
       <div className="text-center mx-6 mt-16 sm:mx-8 sm:mt-16 md:m-16 lg:m-18">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide">
