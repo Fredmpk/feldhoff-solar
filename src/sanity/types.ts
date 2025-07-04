@@ -13,44 +13,6 @@
  */
 
 // Source: schema.json
-export type PrivateHomes = {
-  _id: string;
-  _type: "privateHomes";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  privateImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  privateText?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
-
 export type Legal = {
   _id: string;
   _type: "legal";
@@ -82,13 +44,13 @@ export type Legal = {
   }>;
 };
 
-export type About = {
+export type Enterprise = {
   _id: string;
-  _type: "about";
+  _type: "enterprise";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  aboutImage?: {
+  enterpriseImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -100,8 +62,33 @@ export type About = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  enterpriseText?: string;
-  founderImage?: {
+  enterpriseText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type B2b = {
+  _id: string;
+  _type: "b2b";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  b2bImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -113,7 +100,7 @@ export type About = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  founderText?: Array<{
+  b2bText?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -198,13 +185,13 @@ export type AdvantagesFS = {
   };
 };
 
-export type B2b = {
+export type About = {
   _id: string;
-  _type: "b2b";
+  _type: "about";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  b2bImage?: {
+  aboutImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -216,7 +203,20 @@ export type B2b = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  b2bText?: Array<{
+  enterpriseText?: string;
+  founderImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  founderText?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -236,13 +236,13 @@ export type B2b = {
   }>;
 };
 
-export type Enterprise = {
+export type PrivateHomes = {
   _id: string;
-  _type: "enterprise";
+  _type: "privateHomes";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  enterpriseImage?: {
+  privateImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -254,7 +254,7 @@ export type Enterprise = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  enterpriseText?: Array<{
+  privateText?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -412,7 +412,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = PrivateHomes | Legal | About | AdvantagesFS | B2b | Enterprise | Hero | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Legal | Enterprise | B2b | AdvantagesFS | About | PrivateHomes | Hero | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../feldhoff-solar-next/src/sanity/queries.ts
 // Variable: HERO_QUERY
@@ -425,11 +425,98 @@ export type HERO_QUERYResult = {
     } | null;
   } | null;
 } | null;
+// Variable: PRIVATE_HOMES_QUERY
+// Query: *[_type == "privateHomes"][0]{    _id,    privateImage{    asset->{url}    },    privateText    }
+export type PRIVATE_HOMES_QUERYResult = {
+  _id: string;
+  privateImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  privateText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: ENTERPRISE_QUERY
+// Query: *[_type == "enterprise"][0]{    _id,    enterpriseImage{    asset->{url}    },    enterpriseText    }
+export type ENTERPRISE_QUERYResult = {
+  _id: string;
+  enterpriseImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  enterpriseText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: B2B_QUERY
+// Query: *[_type == "b2b"][0]{    _id,    b2bImage{    asset->{url}    },    b2bText    }
+export type B2B_QUERYResult = {
+  _id: string;
+  b2bImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  b2bText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"hero\"][0]{\n    _id,\n  heroImage{\n    asset->{url}\n  },\n  }": HERO_QUERYResult;
+    "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
+    "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
+    "*[_type == \"b2b\"][0]{\n    _id,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
   }
 }

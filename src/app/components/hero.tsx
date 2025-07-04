@@ -5,15 +5,10 @@ import { HERO_QUERYResult } from "@/sanity/types";
 import Link from "next/link";
 import React from "react";
 
-export async function Hero() {
-  const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
-    data: HERO_QUERYResult;
-  };
-
-  console.log(hero);
+export function Hero({ hero }: { hero: HERO_QUERYResult }) {
   return (
     <section
-      className="pt-20 sm:pt-32 bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col items-center"
+      className="pt-20 sm:pt-32 bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col items-center rounded-b-lg"
       style={{
         backgroundImage: `url(${urlFor(hero?.heroImage).url()})`,
       }}
