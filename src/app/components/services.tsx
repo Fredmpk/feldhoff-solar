@@ -6,9 +6,10 @@ import {
   B2B_QUERYResult,
 } from "@/sanity/types";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { Easing, motion, useInView } from "framer-motion";
 
 export function Services({
   privateHomes,
@@ -67,6 +68,54 @@ export function Services({
   const [hovered, setHovered] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Animation variants for each card
+  const cardVariants = {
+    enterprise: {
+      hidden: { opacity: 0, x: -100 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 1.6,
+          ease: "easeInOut" as Easing,
+          delay: 0.4,
+        },
+      },
+    },
+    privateHomes: {
+      hidden: { opacity: 0, y: 10 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 1.6,
+          ease: "easeInOut" as Easing,
+          delay: 0.6,
+        },
+      },
+    },
+    b2b: {
+      hidden: { opacity: 0, x: 100 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 1.6,
+          ease: "easeInOut" as Easing,
+          delay: 0.4,
+        },
+      },
+    },
+  };
+
+  const titleTransition = {
+    duration: 0.8,
+    ease: "easeInOut" as Easing,
+  };
+
   const handleCardClick = (key: string) => {
     // Only run on mobile screens
     if (window.innerWidth < 640) {
@@ -74,6 +123,7 @@ export function Services({
       setExpanded(expanded === key ? null : key);
     }
   };
+
   const handleMouseEnter = (key: string) => {
     if (window.innerWidth >= 640) {
       setHovered(key);
@@ -83,12 +133,22 @@ export function Services({
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="font-bold text-center text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide p-8 md:p-12 lg:p-16">
+        <motion.h2
+          className="font-bold text-center text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide p-8 md:p-12 lg:p-16"
+          initial={{ opacity: 0, y: -50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+          transition={{ ...titleTransition, delay: 0.2 }}
+        >
           Unsere <span className="text-tforange">Leistungen</span>{" "}
-        </h2>
-        <div className="flex flex-col sm:flex-row items-center justify-between mx-6 md:mx-16 lg:mx-20 xl:mx-24 2xl:mx-32 gap-4 md:gap-12">
-          <div
-            className={` bg-tforange rounded-xl transition-all duration-300 
+        </motion.h2>
+
+        <div
+          ref={ref}
+          className="flex flex-col sm:flex-row items-center justify-center mx-6 md:mx-16 lg:mx-20 xl:mx-24 2xl:mx-32 gap-4 md:gap-12 lg:gap-16 xl:gap-24"
+        >
+          {/* Enterprise Card - flies in from left */}
+          <motion.div
+            className={`bg-tforange rounded-xl transition-all duration-300 
              flex ${hovered === "enterprise" ? "w-full" : ""} 
             ${hovered === "enterprise" ? "pb-6 " : ""}
             ${hovered === "enterprise" ? "flex-row " : "flex-col"}
@@ -97,6 +157,9 @@ export function Services({
             ${expanded === "enterprise" ? "flex-col" : "flex-row"}
             ${expanded === "enterprise" ? "items-center" : ""}
             `}
+            variants={cardVariants.enterprise}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             onClick={() => handleCardClick("enterprise")}
             onMouseEnter={() => handleMouseEnter("enterprise")}
             onMouseLeave={() => setHovered(null)}
@@ -127,15 +190,20 @@ export function Services({
                 components={components}
               />
             </div>
-          </div>
-          <div
-            className={` transition-transform bg-tfturquoise rounded-xl duration-200 
+          </motion.div>
+
+          {/* Private Homes Card - flies in from bottom */}
+          <motion.div
+            className={`transition-transform bg-tfturquoise rounded-xl duration-200 
               ${hovered === "privateHomes" ? "w-full" : ""} ${hovered === "privateHomes" ? "pb-6" : ""}
             ${hovered === "privateHomes" ? "flex flex-col items-center" : ""}
               ${expanded === "privateHomes" ? "w-full" : ""} ${expanded === "privateHomes" ? "pb-6" : ""}
             ${expanded === "privateHomes" ? "flex flex-col items-center" : ""}
             ${hovered === "enterprise" ? "hidden" : ""}
             ${hovered === "b2b" ? "hidden" : ""}`}
+            variants={cardVariants.privateHomes}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             onMouseEnter={() => handleMouseEnter("privateHomes")}
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleCardClick("privateHomes")}
@@ -160,15 +228,20 @@ export function Services({
                 components={components}
               />
             </div>
-          </div>
-          <div
-            className={` transition-transform bg-tforange rounded-xl duration-200 flex ${hovered === "b2b" ? "w-full" : ""} ${hovered === "b2b" ? "pb-6" : ""}
+          </motion.div>
+
+          {/* B2B Card - flies in from right */}
+          <motion.div
+            className={`transition-transform bg-tforange rounded-xl duration-200 flex ${hovered === "b2b" ? "w-full" : ""} ${hovered === "b2b" ? "pb-6" : ""}
             ${expanded === "b2b" ? "w-full" : ""} ${expanded === "b2b" ? "pb-6" : ""}
             ${hovered === "b2b" ? "justify-between" : ""}
             ${hovered === "privateHomes" ? "hidden" : ""}
             ${hovered === "enterprise" ? "hidden" : ""}
             ${expanded === "b2b" ? "flex-col-reverse items-center" : ""}
             `}
+            variants={cardVariants.b2b}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             onMouseEnter={() => handleMouseEnter("b2b")}
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleCardClick("b2b")}
@@ -193,14 +266,21 @@ export function Services({
                 className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-      <Link href="/kontakt">
-        <button className=" mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-6 rounded-2xl text-white tracking-wide  cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
-          Jetzt kostenlosen Beratungstermin vereinbaren
-        </button>
-      </Link>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ ...titleTransition, delay: 1.0 }}
+      >
+        <Link href="/kontakt">
+          <button className="mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-6 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
+            Jetzt kostenlosen Beratungstermin vereinbaren
+          </button>
+        </Link>
+      </motion.div>
     </div>
   );
 }
