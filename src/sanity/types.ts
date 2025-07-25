@@ -509,6 +509,40 @@ export type B2B_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+// Variable: ADVANTAGES_FS_QUERY
+// Query: *[_type == "advantagesFS"][0]{    _id,    subTitle,    titleS1,    textS1,    iconS1{    asset->{url}    },    titleS2,    textS2,    iconS2{    asset->{url}    },    titleS3,    textS3,    iconS3{    asset->{url}    },    titleS4,    textS4,    iconS4{    asset->{url}    },    }
+export type ADVANTAGES_FS_QUERYResult = {
+  _id: string;
+  subTitle: string | null;
+  titleS1: string | null;
+  textS1: string | null;
+  iconS1: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  titleS2: string | null;
+  textS2: string | null;
+  iconS2: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  titleS3: string | null;
+  textS3: string | null;
+  iconS3: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  titleS4: string | null;
+  textS4: string | null;
+  iconS4: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -518,5 +552,6 @@ declare module "@sanity/client" {
     "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
     "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
     "*[_type == \"b2b\"][0]{\n    _id,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
+    "*[_type == \"advantagesFS\"][0]{\n    _id,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
   }
 }
