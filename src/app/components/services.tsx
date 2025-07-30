@@ -1,4 +1,5 @@
 "use client";
+
 import { urlFor } from "@/sanity/imageUrlBuilder";
 import {
   PRIVATE_HOMES_QUERYResult,
@@ -6,7 +7,7 @@ import {
   B2B_QUERYResult,
 } from "@/sanity/types";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { Easing, motion, useInView } from "framer-motion";
@@ -67,9 +68,23 @@ export function Services({
 
   const [hovered, setHovered] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [expansionPhase, setExpansionPhase] = useState<number>(0);
+  const [expansionTimer, setExpansionTimer] = useState<NodeJS.Timeout | null>(
+    null
+  );
+  const [isReady, setIsReady] = useState<boolean>(false);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => {
+        setIsReady(true);
+      }, 2000); // Dauer der longest fly-in animation
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
 
   // Animation variants for each card
   const cardVariants = {
@@ -116,17 +131,65 @@ export function Services({
     ease: "easeInOut" as Easing,
   };
 
+  // Dynamic width class function with multiple phases
+  const getCardWidth = (cardKey: string) => {
+    if (hovered !== cardKey) return "";
+
+    switch (expansionPhase) {
+      case 1:
+        return "w-1/2"; // 50% width
+      case 2:
+        return "w-2/3"; // 66% width
+      case 3:
+        return "w-3/4"; // 75% width
+      case 4:
+        return "w-full"; // 100% width
+      default:
+        return "";
+    }
+  };
+
+  // Clear all timers helper
+  const clearExpansionTimers = () => {
+    if (expansionTimer) {
+      clearTimeout(expansionTimer);
+      setExpansionTimer(null);
+    }
+  };
+
+  // Enhanced mouse enter with smooth phases
+  const handleMouseEnter = (key: string) => {
+    if (window.innerWidth < 640 || !isReady) {
+      setHovered(null);
+
+      return;
+    }
+    // Clear any existing timers
+    clearExpansionTimers();
+
+    setHovered(key);
+    setExpansionPhase(1);
+
+    // Create staggered expansion phases
+    const timer1 = setTimeout(() => setExpansionPhase(2), 120); // 50% → 66%
+    const timer2 = setTimeout(() => setExpansionPhase(3), 240); // 66% → 75%
+    const timer3 = setTimeout(() => setExpansionPhase(4), 360); // 75% → 100%
+
+    setExpansionTimer(timer3);
+  };
+
+  // Enhanced mouse leave
+  const handleMouseLeave = () => {
+    clearExpansionTimers();
+    setHovered(null);
+    setExpansionPhase(0);
+  };
+
   const handleCardClick = (key: string) => {
     // Only run on mobile screens
     if (window.innerWidth < 640) {
       // Tailwind's "sm" breakpoint is 640px
       setExpanded(expanded === key ? null : key);
-    }
-  };
-
-  const handleMouseEnter = (key: string) => {
-    if (window.innerWidth >= 640) {
-      setHovered(key);
     }
   };
 
@@ -144,13 +207,22 @@ export function Services({
 
         <div
           ref={ref}
-          className="flex flex-col sm:flex-row items-center justify-center mx-6 md:mx-16 lg:mx-20 xl:mx-24 2xl:mx-32 gap-4 md:gap-12 lg:gap-16 xl:gap-24"
+          className={`flex flex-col items-center sm:flex-row   ${
+            hovered === "enterprise"
+              ? "items-start justify-start"
+              : hovered === "b2b"
+                ? "items-end justify-end"
+                : "justify-center sm:justify-between items-center"
+          }
+          mx-6 md:mx-16 lg:mx-20 xl:mx-24 2xl:mx-32 
+          gap-4 sm:gap-0
+          `}
         >
           {/* Enterprise Card - flies in from left */}
           <motion.div
-            className={`bg-tforange rounded-xl transition-all duration-300 
-             flex ${hovered === "enterprise" ? "w-full" : ""} 
-            ${hovered === "enterprise" ? "pb-6 " : ""}
+            className={`bg-tforange rounded-xl transition-all duration-500 ease-out
+             flex overflow-hidden
+             ${getCardWidth("enterprise")}
             ${hovered === "enterprise" ? "flex-row " : "flex-col"}
             ${hovered === "privateHomes" ? "hidden" : ""}
             ${hovered === "b2b" ? "hidden" : ""}
@@ -162,7 +234,7 @@ export function Services({
             animate={isInView ? "visible" : "hidden"}
             onClick={() => handleCardClick("enterprise")}
             onMouseEnter={() => handleMouseEnter("enterprise")}
-            onMouseLeave={() => setHovered(null)}
+            onMouseLeave={handleMouseLeave}
           >
             <div
               className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0`}
@@ -177,35 +249,36 @@ export function Services({
               />
             </div>
             <div
-              className={`${
-                hovered === "enterprise" || expanded === "enterprise"
-                  ? "block"
-                  : "hidden"
-              } flex flex-col ${
-                expanded === "enterprise" ? "text-center" : "text-right"
-              } justify-center text-sm lg:text-lg m-4`}
+              className={`
+    text-sm lg:text-lg
+    ${
+      hovered === "enterprise" || expanded === "enterprise"
+        ? "w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 transition-opacity duration-200 text-right"
+        : "w-0 opacity-0 h-0 overflow-hidden"
+    }
+  `}
             >
-              <PortableText
-                value={enterprise?.enterpriseText || []}
-                components={components}
-              />
+              {(hovered === "enterprise" && expansionPhase === 4) ||
+              expanded === "enterprise" ? (
+                <PortableText
+                  value={enterprise?.enterpriseText || []}
+                  components={components}
+                />
+              ) : null}
             </div>
           </motion.div>
 
           {/* Private Homes Card - flies in from bottom */}
           <motion.div
-            className={`transition-transform bg-tfturquoise rounded-xl duration-200 
-              ${hovered === "privateHomes" ? "w-full" : ""} ${hovered === "privateHomes" ? "pb-6" : ""}
-            ${hovered === "privateHomes" ? "flex flex-col items-center" : ""}
-              ${expanded === "privateHomes" ? "w-full" : ""} ${expanded === "privateHomes" ? "pb-6" : ""}
-            ${expanded === "privateHomes" ? "flex flex-col items-center" : ""}
-            ${hovered === "enterprise" ? "hidden" : ""}
-            ${hovered === "b2b" ? "hidden" : ""}`}
+            className={`transition-all duration-500 ease-out bg-tfturquoise rounded-xl overflow-hidden
+              ${getCardWidth("privateHomes")}
+              ${hovered === "privateHomes" || expanded === "privateHomes" ? "flex flex-col items-center pb-6 w-full" : ""}
+              ${hovered === "enterprise" || hovered === "b2b" ? "hidden" : ""}`}
             variants={cardVariants.privateHomes}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             onMouseEnter={() => handleMouseEnter("privateHomes")}
-            onMouseLeave={() => setHovered(null)}
+            onMouseLeave={handleMouseLeave}
             onClick={() => handleCardClick("privateHomes")}
           >
             <div
@@ -221,41 +294,49 @@ export function Services({
               />
             </div>
             <div
-              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "block" : "hidden"} text-center items-center justify-center text-sm lg:text-lg`}
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-center items-center justify-center text-sm lg:text-lg
+              transition-opacity duration-300 delay-200`}
             >
-              <PortableText
-                value={privateHomes?.privateText || []}
-                components={components}
-              />
+              {hovered === "privateHomes" || expanded === "privateHomes" ? (
+                <PortableText
+                  value={privateHomes?.privateText || []}
+                  components={components}
+                />
+              ) : null}
             </div>
           </motion.div>
 
           {/* B2B Card - flies in from right */}
           <motion.div
-            className={`transition-transform bg-tforange rounded-xl duration-200 flex ${hovered === "b2b" ? "w-full" : ""} ${hovered === "b2b" ? "pb-6" : ""}
+            className={`transition-all duration-500 ease-out bg-tforange rounded-xl flex overflow-hidden
+            ${getCardWidth("b2b")}
             ${expanded === "b2b" ? "w-full" : ""} ${expanded === "b2b" ? "pb-6" : ""}
-            ${hovered === "b2b" ? "justify-between" : ""}
+            ${hovered === "b2b" ? "items-start justify-between" : "items-center"}
             ${hovered === "privateHomes" ? "hidden" : ""}
             ${hovered === "enterprise" ? "hidden" : ""}
-            ${expanded === "b2b" ? "flex-col-reverse items-center" : ""}
+            ${expanded === "b2b" ? "flex-col-reverse items-center" : "flex-row items-center"}
             `}
             variants={cardVariants.b2b}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             onMouseEnter={() => handleMouseEnter("b2b")}
-            onMouseLeave={() => setHovered(null)}
+            onMouseLeave={handleMouseLeave}
             onClick={() => handleCardClick("b2b")}
           >
             <div
-              className={`${hovered === "b2b" || expanded === "b2b" ? "block" : "hidden"} text-sm lg:text-lg max-w-[70%] pt-8 px-4`}
+              className={`${(hovered === "b2b" && expansionPhase === 4) || expanded === "b2b" ? "block opacity-100 max-w-full sm:h-120 lg:h-152 xl:h-124 transition-opacity duration-300 delay-200" : "opacity-0 w-0 h-0 overflow-hidden"} text-sm lg:text-lg pt-8
+               duration-300 delay-200`}
             >
-              <PortableText
-                value={b2b?.b2bText || []}
-                components={components}
-              />
+              {(hovered === "b2b" && expansionPhase === 4) ||
+              expanded === "b2b" ? (
+                <PortableText
+                  value={b2b?.b2bText || []}
+                  components={components}
+                />
+              ) : null}
             </div>
             <div
-              className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative `}
+              className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0 `}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 B2B
