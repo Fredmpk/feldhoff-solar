@@ -135,7 +135,7 @@ export default function AdvantagesFS({
                     src={urlFor(advantagesFS?.iconS3).url()}
                     className="w-8 h-8 md:w-12 md:h-12 absolute top-4 right-4 md:top-4 md:right-4"
                   />
-                  <p className="text-white text-left text-md font-semibold md:text-lg lg:text-xl pt-1 md:pt-2">
+                  <p className="text-white text-left text-md font-semibold md:text-lg pt-1 md:pt-2">
                     {advantagesFS?.textS3}
                   </p>
                 </div>
