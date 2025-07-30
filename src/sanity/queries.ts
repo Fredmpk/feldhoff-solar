@@ -30,6 +30,20 @@ export const B2B_QUERY = defineQuery(`*[_type == "b2b"][0]{
     b2bText
     }`);
 
+export const ABOUT_QUERY = defineQuery(`*[_type == "about"][0]{
+    _id,
+    aboutImage{
+    asset->{url}
+    },
+    altAboutImage,
+    enterpriseText,
+    founderImage{
+    asset->{url}
+    },
+    altFounderImage,
+    founderText
+    }`);
+
 export const ADVANTAGES_FS_QUERY = defineQuery(`*[_type == "advantagesFS"][0]{
     _id,
     subTitle,

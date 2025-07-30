@@ -203,6 +203,7 @@ export type About = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  altAboutImage?: string;
   enterpriseText?: string;
   founderImage?: {
     asset?: {
@@ -216,24 +217,8 @@ export type About = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  founderText?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  altFounderImage?: string;
+  founderText?: string;
 };
 
 export type PrivateHomes = {
@@ -509,6 +494,25 @@ export type B2B_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+// Variable: ABOUT_QUERY
+// Query: *[_type == "about"][0]{    _id,    aboutImage{    asset->{url}    },    altAboutImage,    enterpriseText,    founderImage{    asset->{url}    },    altFounderImage,    founderText    }
+export type ABOUT_QUERYResult = {
+  _id: string;
+  aboutImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  altAboutImage: string | null;
+  enterpriseText: string | null;
+  founderImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  altFounderImage: string | null;
+  founderText: string | null;
+} | null;
 // Variable: ADVANTAGES_FS_QUERY
 // Query: *[_type == "advantagesFS"][0]{    _id,    subTitle,    titleS1,    textS1,    iconS1{    asset->{url}    },    titleS2,    textS2,    iconS2{    asset->{url}    },    titleS3,    textS3,    iconS3{    asset->{url}    },    titleS4,    textS4,    iconS4{    asset->{url}    },    }
 export type ADVANTAGES_FS_QUERYResult = {
@@ -552,6 +556,7 @@ declare module "@sanity/client" {
     "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
     "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
     "*[_type == \"b2b\"][0]{\n    _id,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
+    "*[_type == \"about\"][0]{\n    _id,\n    aboutImage{\n    asset->{url}\n    },\n    altAboutImage,\n    enterpriseText,\n    founderImage{\n    asset->{url}\n    },\n    altFounderImage,\n    founderText\n    }": ABOUT_QUERYResult;
     "*[_type == \"advantagesFS\"][0]{\n    _id,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
   }
 }

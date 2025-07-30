@@ -4,6 +4,7 @@ import { Hero } from "./components/hero";
 import { About } from "./components/about";
 import { Services } from "./components/services";
 import {
+  ABOUT_QUERYResult,
   ADVANTAGES_FS_QUERYResult,
   B2B_QUERYResult,
   ENTERPRISE_QUERYResult,
@@ -17,6 +18,7 @@ import {
   HERO_QUERY,
   PRIVATE_HOMES_QUERY,
   ADVANTAGES_FS_QUERY,
+  ABOUT_QUERY,
 } from "@/sanity/queries";
 import AdvantagesFS from "./components/advantagesFS";
 
@@ -42,6 +44,11 @@ export default async function Home() {
   })) as {
     data: ADVANTAGES_FS_QUERYResult;
   };
+  const { data: about } = (await sanityFetch({
+    query: ABOUT_QUERY,
+  })) as {
+    data: ABOUT_QUERYResult;
+  };
 
   return (
     <main>
@@ -49,7 +56,7 @@ export default async function Home() {
       <Hero hero={hero} />
       <Services privateHomes={privateHomes} enterprise={enterprise} b2b={b2b} />
       <AdvantagesFS advantagesFS={advantagesFS} />
-      <About />
+      <About about={about} />
     </main>
   );
 }
