@@ -1,16 +1,6 @@
 import Link from "next/link";
 import { BurgerMenu } from "./burger-menu";
 
-/**
- * Navbar component for the website.
- *
- * This component renders a fixed navigation bar at the top of the page with a logo centered
- * between navigation links and a burger menu for smaller screens. The navigation links include
- * "Leistungen", "Vorteile", "Unternehmen", and "Kontakt", each linking to different sections
- * of the page. The logo links back to the homepage.
- *
- * The BurgerMenu component is used to show a collapsible menu on smaller screens.
- */
 export function Navbar() {
   return (
     <div className="fixed w-full bg-white opacity-90 shadow-md z-50 ">
@@ -27,14 +17,20 @@ export function Navbar() {
 
         <ul className=" gap-5 md:gap-10 lg:gap-20 pt-9 lg:pt-8 hidden md:flex ml-auto font-bold md:text-sm lg:text-md xl:text-lg pr-3 tracking-widest">
           <li>
-            <Link href="/#offers">Leistungen</Link>
+            <Link href="#services" scroll={true}>
+              Leistungen
+            </Link>
           </li>
           <li>
-            <Link href="/#advantages">Vorteile</Link>
+            <Link href="#advantages" scroll={true}>
+              Vorteile
+            </Link>
           </li>
 
           <li>
-            <Link href="/#company">Unternehmen</Link>
+            <Link href="/#about" scroll={true}>
+              Unternehmen
+            </Link>
           </li>
           <li>
             <Link href="/#contact">Kontakt</Link>

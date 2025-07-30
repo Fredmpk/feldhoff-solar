@@ -194,10 +194,10 @@ export function Services({
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 pt-20 sm:pt-32" id="services">
       <div>
         <motion.h2
-          className="font-bold text-center text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide p-8 md:p-12 lg:p-16"
+          className="font-bold text-center text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide pt-4 sm:pt-8 pb-12 md:pb-16 lg:pb-20"
           initial={{ opacity: 0, y: -50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ ...titleTransition, delay: 0.2 }}
@@ -362,6 +362,6 @@ export function Services({
           </button>
         </Link>
       </motion.div>
-    </div>
+    </section>
   );
 }
