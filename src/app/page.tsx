@@ -21,6 +21,7 @@ import {
   ABOUT_QUERY,
 } from "@/sanity/queries";
 import AdvantagesFS from "./components/advantagesFS";
+import { Footer } from "./components/footer";
 
 export default async function Home() {
   const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
@@ -52,11 +53,33 @@ export default async function Home() {
 
   return (
     <main>
-      <Navbar />
-      <Hero hero={hero} />
-      <Services privateHomes={privateHomes} enterprise={enterprise} b2b={b2b} />
-      <AdvantagesFS advantagesFS={advantagesFS} />
-      <About about={about} />
+      <section className="overflow-hidden">
+        <Navbar />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <Hero hero={hero} />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <Services
+          privateHomes={privateHomes}
+          enterprise={enterprise}
+          b2b={b2b}
+        />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <AdvantagesFS advantagesFS={advantagesFS} />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <About about={about} />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <Footer />
+      </section>
     </main>
   );
 }

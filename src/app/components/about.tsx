@@ -4,35 +4,50 @@ import { PortableText } from "next-sanity";
 
 export function About({ about }: { about: ABOUT_QUERYResult }) {
   return (
-    <section id="advantages" className="pt-20 sm:pt-32">
+    <section id="about" className="py-20 sm:py-32 ">
       <div className="flex flex-col items-center justify-center">
         <div className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 ">
           Das <span className="text-tforange">Unternehmen</span>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="w-1/2">
+
+        {/* Grid container with borders */}
+        <div className="sm:grid sm:grid-cols-2 mx-4 text-sm md:text-base lg:text-lg ">
+          {/* Top left - Company image */}
+          <div className="flex sm:border-r border-b border-zinc-300 sm:p-12 p-6 items-start justify-center">
             <img
-              className="w-full p-24"
-              src={urlFor(about?.aboutImage).auto("format").fit("crop").url()}
+              className="w-1/2 sm:w-[80%]"
+              src={urlFor(about?.aboutImage).url()}
               alt={about?.altAboutImage || "Unternehmenslogo"}
             />
           </div>
-          <div className="w-1/2">
-            <div className="text-right font-semibold pl-12 pr-8">
+
+          {/* Top right - Company text */}
+          <div className="sm:border-b border-zinc-200 lg:px-12 p-6 flex items-start">
+            <div className="text-right font-semibold w-full">
               Das <span className="text-tforange font-bold">Unternehmen </span>
               {about?.enterpriseText || ""}
             </div>
           </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="text-left font-semibold pl-12 pr-8 w-1/2">
-            Der <span className="text-tforange font-bold">Gründer </span>
-            {about?.founderText || ""}
-          </div>
-          <div className="w-1/2 rounded-full">
+          <div className="sm:hidden lg:px-12 lg:py-6 p-6 ml-auto mt-auto block xl:w-2/3 border-b border-t sm:border-b-0 sm:border-t-0 border-zinc-200">
             <img
-              className="w-full p-24 rounded-full "
-              src={urlFor(about?.founderImage).width(400).height(400).url()}
+              className="object-contain rounded-4xl"
+              src={urlFor(about?.founderImage).url()}
+              alt={about?.altFounderImage || "Unternehmenslogo"}
+            />
+          </div>
+          {/* Bottom left - Founder text */}
+          <div className="border-b sm:border-b-0 sm:border-r border-zinc-200 lg:p-12 p-6 flex items-end ">
+            <div className="text-left font-semibold w-full">
+              Der <span className="text-tforange font-bold">Gründer </span>
+              {about?.founderText || ""}
+            </div>
+          </div>
+
+          {/* Bottom right - Founder image */}
+          <div className="hidden lg:px-12 lg:py-6 p-6 ml-auto mt-auto sm:block xl:w-2/3">
+            <img
+              className="object-contain rounded-4xl"
+              src={urlFor(about?.founderImage).url()}
               alt={about?.altFounderImage || "Unternehmenslogo"}
             />
           </div>
