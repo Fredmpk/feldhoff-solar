@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
+import { Navbar } from "./components/navbar";
+import { Footer } from "./components/footer";
 
 const ralewaySans = Raleway({
   subsets: ["latin"],
@@ -21,8 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${ralewaySans.className} antialiased`}>{children}</body>
+    <html lang="de" className="h-full">
+      <body
+        className={`${ralewaySans.className} antialiased min-h-screen flex flex-col`}
+      >
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

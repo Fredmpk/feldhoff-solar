@@ -202,7 +202,7 @@ export function Services({
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ ...titleTransition, delay: 0.2 }}
         >
-          Unsere <span className="text-tforange">Leistungen</span>{" "}
+          Unsere Leistungen
         </motion.h2>
 
         <div
@@ -240,7 +240,7 @@ export function Services({
               className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0`}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
-                Gewerbebetriebe
+                {enterprise?.enterpriseTitle || ""}
               </h3>
               <img
                 src={urlFor(enterprise?.enterpriseImage).url()}
@@ -285,7 +285,7 @@ export function Services({
               className={`bg-tfturquoise w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative `}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
-                Privathaushalte
+                {privateHomes?.privateTitle || ""}
               </h3>
               <img
                 src={urlFor(privateHomes?.privateImage).url()}
@@ -339,7 +339,7 @@ export function Services({
               className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0 `}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
-                B2B
+                {b2b?.b2bTitle || ""}
               </h3>
               <img
                 src={urlFor(b2b?.b2bImage).url()}

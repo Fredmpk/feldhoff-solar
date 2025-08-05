@@ -57,7 +57,7 @@ export default function AdvantagesFS({
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ ...titleTransition, delay: 0.2 }}
         >
-          Ihre <span className="text-tforange">Vorteile</span> bei uns
+          {advantagesFS?.advantagesTitle}
         </motion.h2>
         <div
           className="flex flex-col items-center justify-center sm:w-[65%]"

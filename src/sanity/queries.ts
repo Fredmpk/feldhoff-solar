@@ -2,13 +2,15 @@ import { defineQuery } from "next-sanity";
 
 export const HERO_QUERY = defineQuery(`*[_type == "hero"][0]{
     _id,
-  heroImage{
+    heroTitle,
+    heroImage{
     asset->{url}
   },
   }`);
 
 export const PRIVATE_HOMES_QUERY = defineQuery(`*[_type == "privateHomes"][0]{
     _id,
+    privateTitle,
     privateImage{
     asset->{url}
     },
@@ -17,6 +19,7 @@ export const PRIVATE_HOMES_QUERY = defineQuery(`*[_type == "privateHomes"][0]{
 
 export const ENTERPRISE_QUERY = defineQuery(`*[_type == "enterprise"][0]{
     _id,
+    enterpriseTitle,
     enterpriseImage{
     asset->{url}
     },
@@ -24,6 +27,7 @@ export const ENTERPRISE_QUERY = defineQuery(`*[_type == "enterprise"][0]{
     }`);
 export const B2B_QUERY = defineQuery(`*[_type == "b2b"][0]{
     _id,
+    b2bTitle,
     b2bImage{
     asset->{url}
     },
@@ -32,6 +36,7 @@ export const B2B_QUERY = defineQuery(`*[_type == "b2b"][0]{
 
 export const ABOUT_QUERY = defineQuery(`*[_type == "about"][0]{
     _id,
+    aboutTitle,
     aboutImage{
     asset->{url}
     },
@@ -46,6 +51,7 @@ export const ABOUT_QUERY = defineQuery(`*[_type == "about"][0]{
 
 export const ADVANTAGES_FS_QUERY = defineQuery(`*[_type == "advantagesFS"][0]{
     _id,
+    advantagesTitle,
     subTitle,
     titleS1,
     textS1,
@@ -67,4 +73,14 @@ export const ADVANTAGES_FS_QUERY = defineQuery(`*[_type == "advantagesFS"][0]{
     iconS4{
     asset->{url}
     },
+    }`);
+
+export const LEGAL_QUERY = defineQuery(`*[_type == "legal"][0]{
+    _id,
+    name,
+    street,
+    city,
+    tel,
+    mail,
+    privacy
     }`);

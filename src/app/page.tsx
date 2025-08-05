@@ -54,9 +54,6 @@ export default async function Home() {
   return (
     <main>
       <section className="overflow-hidden">
-        <Navbar />
-      </section>
-      <section className="overflow-hidden">
         {" "}
         <Hero hero={hero} />
       </section>
@@ -75,10 +72,6 @@ export default async function Home() {
       <section className="overflow-hidden">
         {" "}
         <About about={about} />
-      </section>
-      <section className="overflow-hidden">
-        {" "}
-        <Footer />
       </section>
     </main>
   );

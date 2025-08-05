@@ -50,6 +50,7 @@ export type Enterprise = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  enterpriseTitle?: string;
   enterpriseImage?: {
     asset?: {
       _ref: string;
@@ -88,6 +89,7 @@ export type B2b = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  b2bTitle?: string;
   b2bImage?: {
     asset?: {
       _ref: string;
@@ -126,9 +128,11 @@ export type AdvantagesFS = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  advantagesTitle?: string;
   subTitle?: string;
   titleS1?: string;
   textS1?: string;
+  textsizeS1?: "small" | "normal" | "large";
   iconS1?: {
     asset?: {
       _ref: string;
@@ -143,6 +147,7 @@ export type AdvantagesFS = {
   };
   titleS2?: string;
   textS2?: string;
+  textsizeS2?: "small" | "normal" | "large";
   iconS2?: {
     asset?: {
       _ref: string;
@@ -157,6 +162,7 @@ export type AdvantagesFS = {
   };
   titleS3?: string;
   textS3?: string;
+  textsizeS3?: "small" | "normal" | "large";
   iconS3?: {
     asset?: {
       _ref: string;
@@ -171,6 +177,7 @@ export type AdvantagesFS = {
   };
   titleS4?: string;
   textS4?: string;
+  textsizeS4?: "small" | "normal" | "large";
   iconS4?: {
     asset?: {
       _ref: string;
@@ -191,6 +198,7 @@ export type About = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  aboutTitle?: string;
   aboutImage?: {
     asset?: {
       _ref: string;
@@ -227,6 +235,7 @@ export type PrivateHomes = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  privateTitle?: string;
   privateImage?: {
     asset?: {
       _ref: string;
@@ -265,6 +274,7 @@ export type Hero = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  heroTitle?: string;
   heroImage?: {
     asset?: {
       _ref: string;
@@ -401,9 +411,10 @@ export type AllSanitySchemaTypes = Legal | Enterprise | B2b | AdvantagesFS | Abo
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../feldhoff-solar-next/src/sanity/queries.ts
 // Variable: HERO_QUERY
-// Query: *[_type == "hero"][0]{    _id,  heroImage{    asset->{url}  },  }
+// Query: *[_type == "hero"][0]{    _id,    heroTitle,    heroImage{    asset->{url}  },  }
 export type HERO_QUERYResult = {
   _id: string;
+  heroTitle: string | null;
   heroImage: {
     asset: {
       url: string | null;
@@ -411,9 +422,10 @@ export type HERO_QUERYResult = {
   } | null;
 } | null;
 // Variable: PRIVATE_HOMES_QUERY
-// Query: *[_type == "privateHomes"][0]{    _id,    privateImage{    asset->{url}    },    privateText    }
+// Query: *[_type == "privateHomes"][0]{    _id,    privateTitle,    privateImage{    asset->{url}    },    privateText    }
 export type PRIVATE_HOMES_QUERYResult = {
   _id: string;
+  privateTitle: string | null;
   privateImage: {
     asset: {
       url: string | null;
@@ -439,9 +451,10 @@ export type PRIVATE_HOMES_QUERYResult = {
   }> | null;
 } | null;
 // Variable: ENTERPRISE_QUERY
-// Query: *[_type == "enterprise"][0]{    _id,    enterpriseImage{    asset->{url}    },    enterpriseText    }
+// Query: *[_type == "enterprise"][0]{    _id,    enterpriseTitle,    enterpriseImage{    asset->{url}    },    enterpriseText    }
 export type ENTERPRISE_QUERYResult = {
   _id: string;
+  enterpriseTitle: string | null;
   enterpriseImage: {
     asset: {
       url: string | null;
@@ -467,9 +480,10 @@ export type ENTERPRISE_QUERYResult = {
   }> | null;
 } | null;
 // Variable: B2B_QUERY
-// Query: *[_type == "b2b"][0]{    _id,    b2bImage{    asset->{url}    },    b2bText    }
+// Query: *[_type == "b2b"][0]{    _id,    b2bTitle,    b2bImage{    asset->{url}    },    b2bText    }
 export type B2B_QUERYResult = {
   _id: string;
+  b2bTitle: string | null;
   b2bImage: {
     asset: {
       url: string | null;
@@ -495,9 +509,10 @@ export type B2B_QUERYResult = {
   }> | null;
 } | null;
 // Variable: ABOUT_QUERY
-// Query: *[_type == "about"][0]{    _id,    aboutImage{    asset->{url}    },    altAboutImage,    enterpriseText,    founderImage{    asset->{url}    },    altFounderImage,    founderText    }
+// Query: *[_type == "about"][0]{    _id,    aboutTitle,    aboutImage{    asset->{url}    },    altAboutImage,    enterpriseText,    founderImage{    asset->{url}    },    altFounderImage,    founderText    }
 export type ABOUT_QUERYResult = {
   _id: string;
+  aboutTitle: string | null;
   aboutImage: {
     asset: {
       url: string | null;
@@ -514,9 +529,10 @@ export type ABOUT_QUERYResult = {
   founderText: string | null;
 } | null;
 // Variable: ADVANTAGES_FS_QUERY
-// Query: *[_type == "advantagesFS"][0]{    _id,    subTitle,    titleS1,    textS1,    iconS1{    asset->{url}    },    titleS2,    textS2,    iconS2{    asset->{url}    },    titleS3,    textS3,    iconS3{    asset->{url}    },    titleS4,    textS4,    iconS4{    asset->{url}    },    }
+// Query: *[_type == "advantagesFS"][0]{    _id,    advantagesTitle,    subTitle,    titleS1,    textS1,    iconS1{    asset->{url}    },    titleS2,    textS2,    iconS2{    asset->{url}    },    titleS3,    textS3,    iconS3{    asset->{url}    },    titleS4,    textS4,    iconS4{    asset->{url}    },    }
 export type ADVANTAGES_FS_QUERYResult = {
   _id: string;
+  advantagesTitle: string | null;
   subTitle: string | null;
   titleS1: string | null;
   textS1: string | null;
@@ -547,16 +563,45 @@ export type ADVANTAGES_FS_QUERYResult = {
     } | null;
   } | null;
 } | null;
+// Variable: LEGAL_QUERY
+// Query: *[_type == "legal"][0]{    _id,    name,    street,    city,    tel,    mail,    privacy    }
+export type LEGAL_QUERYResult = {
+  _id: string;
+  name: string | null;
+  street: string | null;
+  city: string | null;
+  tel: string | null;
+  mail: string | null;
+  privacy: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"hero\"][0]{\n    _id,\n  heroImage{\n    asset->{url}\n  },\n  }": HERO_QUERYResult;
-    "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
-    "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
-    "*[_type == \"b2b\"][0]{\n    _id,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
-    "*[_type == \"about\"][0]{\n    _id,\n    aboutImage{\n    asset->{url}\n    },\n    altAboutImage,\n    enterpriseText,\n    founderImage{\n    asset->{url}\n    },\n    altFounderImage,\n    founderText\n    }": ABOUT_QUERYResult;
-    "*[_type == \"advantagesFS\"][0]{\n    _id,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
+    "*[_type == \"hero\"][0]{\n    _id,\n    heroTitle,\n    heroImage{\n    asset->{url}\n  },\n  }": HERO_QUERYResult;
+    "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateTitle,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
+    "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseTitle,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
+    "*[_type == \"b2b\"][0]{\n    _id,\n    b2bTitle,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
+    "*[_type == \"about\"][0]{\n    _id,\n    aboutTitle,\n    aboutImage{\n    asset->{url}\n    },\n    altAboutImage,\n    enterpriseText,\n    founderImage{\n    asset->{url}\n    },\n    altFounderImage,\n    founderText\n    }": ABOUT_QUERYResult;
+    "*[_type == \"advantagesFS\"][0]{\n    _id,\n    advantagesTitle,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
+    "*[_type == \"legal\"][0]{\n    _id,\n    name,\n    street,\n    city,\n    tel,\n    mail,\n    privacy\n    }": LEGAL_QUERYResult;
   }
 }

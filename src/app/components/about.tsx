@@ -1,14 +1,13 @@
 import { urlFor } from "@/sanity/imageUrlBuilder";
 import { ABOUT_QUERYResult } from "@/sanity/types";
-import { PortableText } from "next-sanity";
 
 export function About({ about }: { about: ABOUT_QUERYResult }) {
   return (
     <section id="about" className="py-20 sm:py-32 ">
       <div className="flex flex-col items-center justify-center">
-        <div className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 ">
-          Das <span className="text-tforange">Unternehmen</span>
-        </div>
+        <h2 className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 ">
+          {about?.aboutTitle || ""}
+        </h2>
 
         {/* Grid container with borders */}
         <div className="sm:grid sm:grid-cols-2 mx-4 text-sm md:text-base lg:text-lg ">
@@ -24,7 +23,6 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
           {/* Top right - Company text */}
           <div className="sm:border-b border-zinc-200 lg:px-12 p-6 flex items-start">
             <div className="text-right font-semibold w-full">
-              Das <span className="text-tforange font-bold">Unternehmen </span>
               {about?.enterpriseText || ""}
             </div>
           </div>
@@ -38,7 +36,6 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
           {/* Bottom left - Founder text */}
           <div className="border-b sm:border-b-0 sm:border-r border-zinc-200 lg:p-12 p-6 flex items-end ">
             <div className="text-left font-semibold w-full">
-              Der <span className="text-tforange font-bold">Gründer </span>
               {about?.founderText || ""}
             </div>
           </div>
