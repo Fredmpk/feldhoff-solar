@@ -6,7 +6,7 @@ export function Footer() {
       <img
         src="/img/logo-cut.png"
         alt="Logo Feldhoff-Solar"
-        className="w-1/2 sm:w-1/3 md:w-1/4 sm:px-4 md:pl-4 lg:p-8 xl:p-12"
+        className="w-1/2 sm:w-1/3 sm:px-4 md:pl-4 lg:p-8 xl:px-16 "
       />
       <div className="sm:absolute sm:bottom-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:translate-y-1/2">
         <Link href="/kontakt">

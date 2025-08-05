@@ -357,7 +357,7 @@ export function Services({
         transition={{ ...titleTransition, delay: 1.0 }}
       >
         <Link href="/kontakt">
-          <button className="mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-6 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
+          <button className="mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-6 lg:py-4 lg:px-8 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
             Jetzt kostenlosen Beratungstermin vereinbaren
           </button>
         </Link>
