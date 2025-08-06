@@ -3,6 +3,7 @@ import "./globals.css";
 import { Raleway } from "next/font/google";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { SanityLive } from "@/sanity/live";
 
 const ralewaySans = Raleway({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <SanityLive />
       </body>
     </html>
   );
