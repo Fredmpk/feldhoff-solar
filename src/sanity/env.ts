@@ -1,7 +1,3 @@
 // src/sanity/env.ts
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
-export const token = process.env.SANITY_API_TOKEN;
-if (!token) {
-  throw new Error("Missing SANITY_API_READ_TOKEN");
-}
