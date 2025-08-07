@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-import { Navbar } from "./components/navbar";
-import { Footer } from "./components/footer";
+import { Navbar } from "./page-components/navbar";
+import Footer from "./page-components/footer";
 import { SanityLive } from "@/sanity/live";
 
 const ralewaySans = Raleway({

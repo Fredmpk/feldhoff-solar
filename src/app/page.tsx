@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Navbar } from "./components/navbar";
-import { Hero } from "./components/hero";
-import { About } from "./components/about";
-import { Services } from "./components/services";
+import { Navbar } from "./page-components/navbar";
+import { Hero } from "./page-components/hero";
+import { About } from "./page-components/about";
+import { Services } from "./page-components/services";
 import {
   ABOUT_QUERYResult,
   ADVANTAGES_FS_QUERYResult,
@@ -20,8 +20,8 @@ import {
   ADVANTAGES_FS_QUERY,
   ABOUT_QUERY,
 } from "@/sanity/queries";
-import AdvantagesFS from "./components/advantagesFS";
-import { Footer } from "./components/footer";
+import AdvantagesFS from "./page-components/advantagesFS";
+import { Footer } from "./page-components/footer";
 
 export default async function Home() {
   const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
