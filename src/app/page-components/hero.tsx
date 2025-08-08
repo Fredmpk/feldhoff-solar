@@ -13,8 +13,8 @@ export function Hero({ hero }: { hero: HERO_QUERYResult }) {
         backgroundImage: `url(${urlFor(hero?.heroImage).url()})`,
       }}
     >
-      <div className="text-center mx-6 mt-16 sm:mx-8 sm:mt-16 md:m-16 lg:m-18">
-        <h1 className="font-bold text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide">
+      <div className="text-center mx-6 mt-4 sm:mx-8 sm:mt-16 md:m-16 lg:m-18">
+        <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide">
           {hero?.heroTitle || ""}
         </h1>
 
