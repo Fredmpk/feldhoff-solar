@@ -21,7 +21,6 @@ import {
   ABOUT_QUERY,
 } from "@/sanity/queries";
 import AdvantagesFS from "./page-components/advantagesFS";
-import { Footer } from "./page-components/footer";
 
 export default async function Home() {
   const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
