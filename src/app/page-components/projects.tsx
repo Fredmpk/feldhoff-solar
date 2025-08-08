@@ -44,8 +44,8 @@ export default function Projects({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto py-12">
+    <section id="projekte" className="min-h-screen bg-gray-50 pt-20 sm:pt-32">
+      <div className="container mx-auto pb-12">
         <div className="text-center mb-12">
           <h2 className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 ">
             Projektgalerie
@@ -93,6 +93,6 @@ export default function Projects({
         }))}
         title={galleryModal.title}
       />
-    </div>
+    </section>
   );
 }

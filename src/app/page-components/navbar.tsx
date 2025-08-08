@@ -17,12 +17,12 @@ export function Navbar() {
 
         <ul className=" gap-5 md:gap-10 lg:gap-20 pt-9 lg:pt-8 hidden md:flex ml-auto font-bold md:text-sm lg:text-md xl:text-lg pr-3 tracking-widest">
           <li>
-            <Link href="/#services" scroll={true}>
+            <Link href="/#leistungen" scroll={true}>
               Leistungen
             </Link>
           </li>
           <li>
-            <Link href="/#advantages" scroll={true}>
+            <Link href="/#vorteile" scroll={true}>
               Vorteile
             </Link>
           </li>
@@ -30,6 +30,11 @@ export function Navbar() {
           <li>
             <Link href="/#about" scroll={true}>
               Unternehmen
+            </Link>
+          </li>
+          <li>
+            <Link href="/#projekte" scroll={true}>
+              Projekte
             </Link>
           </li>
           <li>

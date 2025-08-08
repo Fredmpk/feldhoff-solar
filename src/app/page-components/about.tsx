@@ -3,7 +3,7 @@ import { ABOUT_QUERYResult } from "@/sanity/types";
 
 export function About({ about }: { about: ABOUT_QUERYResult }) {
   return (
-    <section id="about" className="py-20 sm:py-32 ">
+    <section id="about" className="pt-20 sm:pt-32 ">
       <div className="flex flex-col items-center justify-center">
         <h2 className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 ">
           {about?.aboutTitle || ""}

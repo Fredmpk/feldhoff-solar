@@ -34,17 +34,29 @@ export function BurgerMenu() {
         } absolute right-0 mt-2 bg-white rounded-md shadow-lg py-1 z-10 w-1/3`}
       >
         <Link
-          href="/"
+          href="/#leistungen"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
-          Über uns
+          Leistungen
         </Link>
-        <a
-          href="/"
+        <Link
+          href="/#vorteile"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
-          (Galerie)
-        </a>
+          Vorteile
+        </Link>
+        <Link
+          href="/#about"
+          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        >
+          Das Unternehmen
+        </Link>
+        <Link
+          href="/#projekte"
+          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        >
+          Projekte
+        </Link>
 
         <Link
           href="/kontakt"

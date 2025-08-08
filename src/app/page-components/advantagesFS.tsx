@@ -49,7 +49,7 @@ export default function AdvantagesFS({
   };
 
   return (
-    <section id="advantages" className="pt-20 sm:pt-32">
+    <section id="vorteile" className="pt-20 sm:pt-32">
       <div className="flex flex-col items-center justify-center">
         <motion.h2
           className="font-bold text-center text-2xl md:text-3xl xl:text-4xl tracking-wide p-8 md:pb-8 xl:pb-4 "

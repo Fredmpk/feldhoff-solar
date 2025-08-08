@@ -194,7 +194,7 @@ export function Services({
   };
 
   return (
-    <section className="flex flex-col gap-4 pt-20 sm:pt-32" id="services">
+    <section className="flex flex-col gap-4 pt-20 sm:pt-32" id="leistungen">
       <div>
         <motion.h2
           className="font-bold text-center text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide pt-4 sm:pt-8 pb-12 md:pb-16 lg:pb-20"
