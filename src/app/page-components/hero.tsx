@@ -8,7 +8,7 @@ import React from "react";
 export function Hero({ hero }: { hero: HERO_QUERYResult }) {
   return (
     <section
-      className="pt-20 sm:pt-32 bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col items-center rounded-b-lg"
+      className="pt-20 sm:pt-32 bg-cover bg-top md:bg-center bg-no-repeat md:h-screen h-[90vh] flex flex-col items-center justify-between rounded-b-lg"
       style={{
         backgroundImage: `url(${urlFor(hero?.heroImage).url()})`,
       }}
@@ -20,11 +20,13 @@ export function Hero({ hero }: { hero: HERO_QUERYResult }) {
 
         {/*nur schwarz und ins cms*/}
       </div>
-      <Link href="/kontakt">
-        <button className="font-bold text-xl md:text-3xl lg:text-3xl xl:text-4xl bg-tforange py-3 px-8 sm:px-12 lg:px-20 rounded-2xl text-white tracking-wide absolute bottom-40  md:bottom-40 lg:bottom-48 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-125 transition-transform duration-200 text-shadow-lg">
-          Jetzt kontaktieren
-        </button>
-      </Link>
+      <div className="pb-16 sm:pb-32 md:pb-40 lg:pb-48">
+        <Link href="/kontakt">
+          <button className="font-bold text-xl md:text-3xl lg:text-3xl xl:text-4xl bg-tforange py-3 px-8 sm:px-12 lg:px-20 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-125 transition-transform duration-200 text-shadow-lg">
+            Jetzt kontaktieren
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }
