@@ -44,7 +44,7 @@ export function CarouselCard({
     : false;
 
   return (
-    <Card className="h-full max-w-4xl mx-auto">
+    <Card className="h-full max-w-4xl mx-auto text-tfturquoise ">
       <CardContent className="">
         <div className="grid md:grid-cols-2 gap-0 h-full">
           {/* Image Section */}
@@ -69,7 +69,7 @@ export function CarouselCard({
                       mehr
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="!max-w-4xl !w-[90vw]">
+                  <DialogContent className="!max-w-4xl !w-[90vw] !max-h-[90vh]">
                     <DialogHeader>
                       <DialogTitle>{title}</DialogTitle>
                     </DialogHeader>
@@ -87,9 +87,9 @@ export function CarouselCard({
                 variant="default"
                 size="lg"
                 onClick={() => onGalleryClick(galleryImages, title)}
-                className="w-full md:w-auto px-8 py-3 text-base font-medium"
+                className="w-full md:w-auto px-8 py-3 text-base font-medium bg-tfturquoise text-white"
               >
-                View Gallery
+                Bildergalerie
               </Button>
             </div>
           </div>

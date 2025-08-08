@@ -121,7 +121,7 @@ export default function AdvantagesFS({
             <div className="flex flex-row gap-4 md:gap-8 ">
               {/* S3 - flies in from down left */}
               <motion.div
-                className="bg-tforange rounded-xl p-2 md:p-3 flex justify-center items-end w-52 h-52 md:w-68 md:h-64 relative"
+                className="bg-tfturquoise rounded-xl p-2 md:p-3 flex justify-center items-end w-52 h-52 md:w-68 md:h-64 relative"
                 variants={squareVariants.s3}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
@@ -142,7 +142,7 @@ export default function AdvantagesFS({
               </motion.div>
               {/* S4 - flies in from down right */}
               <motion.div
-                className="bg-tfturquoise rounded-xl p-2 md:p-3 flex justify-center items-end w-52 h-52 md:w-68 md:h-64 relative"
+                className="bg-tforange rounded-xl p-2 md:p-3 flex justify-center items-end w-52 h-52 md:w-68 md:h-64 relative"
                 variants={squareVariants.s4}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}

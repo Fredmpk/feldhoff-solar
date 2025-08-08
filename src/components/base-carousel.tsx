@@ -73,18 +73,18 @@ export function BaseCarousel({ children, className = "" }: BaseCarouselProps) {
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex"
+        className=" absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex text-tfturquoise"
         onClick={prevSlide}
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft className="h-4 w-4 text-tfturquoise" />
       </Button>
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex"
+        className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex text-tfturquoise"
         onClick={nextSlide}
       >
-        <ChevronRight className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4 text-tfturquoise" />
       </Button>
 
       {/* Mobile dots indicator */}
