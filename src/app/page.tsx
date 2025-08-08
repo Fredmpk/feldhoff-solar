@@ -10,6 +10,7 @@ import {
   ENTERPRISE_QUERYResult,
   HERO_QUERYResult,
   PRIVATE_HOMES_QUERYResult,
+  PROJECTS_QUERYResult,
 } from "@/sanity/types";
 import { sanityFetch } from "@/sanity/live";
 import {
@@ -19,8 +20,10 @@ import {
   PRIVATE_HOMES_QUERY,
   ADVANTAGES_FS_QUERY,
   ABOUT_QUERY,
+  PROJECTS_QUERY,
 } from "@/sanity/queries";
 import AdvantagesFS from "./page-components/advantagesFS";
+import Projects from "./page-components/projects";
 
 export default async function Home() {
   const { data: hero } = (await sanityFetch({ query: HERO_QUERY })) as {
@@ -50,6 +53,12 @@ export default async function Home() {
     data: ABOUT_QUERYResult;
   };
 
+  const { data: projects } = (await sanityFetch({
+    query: PROJECTS_QUERY,
+  })) as {
+    data: PROJECTS_QUERYResult;
+  };
+
   return (
     <main>
       <section className="overflow-hidden">
@@ -71,6 +80,10 @@ export default async function Home() {
       <section className="overflow-hidden">
         {" "}
         <About about={about} />
+      </section>
+      <section className="overflow-hidden">
+        {" "}
+        <Projects projects={projects} />
       </section>
     </main>
   );

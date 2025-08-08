@@ -13,6 +13,45 @@
  */
 
 // Source: schema.json
+export type Projects = {
+  _id: string;
+  _type: "projects";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  projectsTitle?: string;
+  projectsMainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  altProjectsMainImage?: string;
+  imageGallery?: Array<{
+    galleryImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    altGalleryImage?: string;
+    _key: string;
+  }>;
+  projectsText?: string;
+};
+
 export type Legal = {
   _id: string;
   _type: "legal";
@@ -407,7 +446,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Legal | Enterprise | B2b | AdvantagesFS | About | PrivateHomes | Hero | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Projects | Legal | Enterprise | B2b | AdvantagesFS | About | PrivateHomes | Hero | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../feldhoff-solar-next/src/sanity/queries.ts
 // Variable: HERO_QUERY
@@ -563,6 +602,27 @@ export type ADVANTAGES_FS_QUERYResult = {
     } | null;
   } | null;
 } | null;
+// Variable: PROJECTS_QUERY
+// Query: *[_type == "projects"][]{    _id,    projectsTitle,    projectsMainImage{    asset->{url}    },    altProjectsMainImage,imageGallery[] {galleryImage{    asset->{url}    },    altGalleryImage,    },    projectsText    }
+export type PROJECTS_QUERYResult = Array<{
+  _id: string;
+  projectsTitle: string | null;
+  projectsMainImage: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  altProjectsMainImage: string | null;
+  imageGallery: Array<{
+    galleryImage: {
+      asset: {
+        url: string | null;
+      } | null;
+    } | null;
+    altGalleryImage: string | null;
+  }> | null;
+  projectsText: string | null;
+}>;
 // Variable: LEGAL_QUERY
 // Query: *[_type == "legal"][0]{    _id,    name,    street,    city,    tel,    mail,    privacy    }
 export type LEGAL_QUERYResult = {
@@ -602,6 +662,7 @@ declare module "@sanity/client" {
     "*[_type == \"b2b\"][0]{\n    _id,\n    b2bTitle,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
     "*[_type == \"about\"][0]{\n    _id,\n    aboutTitle,\n    aboutImage{\n    asset->{url}\n    },\n    altAboutImage,\n    enterpriseText,\n    founderImage{\n    asset->{url}\n    },\n    altFounderImage,\n    founderText\n    }": ABOUT_QUERYResult;
     "*[_type == \"advantagesFS\"][0]{\n    _id,\n    advantagesTitle,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
+    "*[_type == \"projects\"][]{\n    _id,\n    projectsTitle,\n    projectsMainImage{\n    asset->{url}\n    },\n    altProjectsMainImage,\nimageGallery[] {\ngalleryImage{\n    asset->{url}\n    },\n    altGalleryImage,\n    },\n    projectsText\n    }": PROJECTS_QUERYResult;
     "*[_type == \"legal\"][0]{\n    _id,\n    name,\n    street,\n    city,\n    tel,\n    mail,\n    privacy\n    }": LEGAL_QUERYResult;
   }
 }

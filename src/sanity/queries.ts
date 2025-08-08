@@ -75,6 +75,22 @@ export const ADVANTAGES_FS_QUERY = defineQuery(`*[_type == "advantagesFS"][0]{
     },
     }`);
 
+export const PROJECTS_QUERY = defineQuery(`*[_type == "projects"][]{
+    _id,
+    projectsTitle,
+    projectsMainImage{
+    asset->{url}
+    },
+    altProjectsMainImage,
+imageGallery[] {
+galleryImage{
+    asset->{url}
+    },
+    altGalleryImage,
+    },
+    projectsText
+    }`);
+
 export const LEGAL_QUERY = defineQuery(`*[_type == "legal"][0]{
     _id,
     name,
