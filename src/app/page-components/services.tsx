@@ -253,7 +253,7 @@ export function Services({
     text-sm lg:text-lg
     ${
       hovered === "enterprise" || expanded === "enterprise"
-        ? "w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 transition-opacity duration-200 text-left"
+        ? "sm:w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 px-4 transition-opacity duration-200 text-left"
         : "w-0 opacity-0 h-0 overflow-hidden"
     }
   `}
@@ -295,7 +295,7 @@ export function Services({
             </div>
             <div
               className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
-              transition-opacity duration-300 delay-200`}
+              transition-opacity duration-300 delay-200 px-4`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
                 <PortableText
@@ -324,7 +324,7 @@ export function Services({
             onClick={() => handleCardClick("b2b")}
           >
             <div
-              className={`${(hovered === "b2b" && expansionPhase === 4) || expanded === "b2b" ? "block opacity-100 max-w-full sm:h-120 lg:h-152 xl:h-124 transition-opacity duration-300 delay-200" : "opacity-0 w-0 h-0 overflow-hidden"} text-sm lg:text-lg pt-8
+              className={`${(hovered === "b2b" && expansionPhase === 4) || expanded === "b2b" ? "block opacity-100 px-4 max-w-full sm:h-120 lg:h-152 xl:h-124 transition-opacity duration-300 delay-200" : "opacity-0 w-0 h-0 overflow-hidden"} text-sm lg:text-lg pt-8
                duration-300 delay-200`}
             >
               {(hovered === "b2b" && expansionPhase === 4) ||
