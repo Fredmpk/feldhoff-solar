@@ -253,7 +253,7 @@ export function Services({
     text-sm lg:text-lg
     ${
       hovered === "enterprise" || expanded === "enterprise"
-        ? "w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 transition-opacity duration-200 text-right"
+        ? "w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 transition-opacity duration-200 text-left"
         : "w-0 opacity-0 h-0 overflow-hidden"
     }
   `}
@@ -294,7 +294,7 @@ export function Services({
               />
             </div>
             <div
-              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-center items-center justify-center text-sm lg:text-lg
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
               transition-opacity duration-300 delay-200`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
