@@ -73,8 +73,8 @@ export function CarouselCard({
                     <DialogHeader>
                       <DialogTitle>{title}</DialogTitle>
                     </DialogHeader>
-                    <div className="mt-4">
-                      <p className="text-gray-600 leading-relaxed">
+                    <div className="mt-4 overflow-y-auto h-[80vh]">
+                      <p className="text-gray-600 leading-relaxed pb-4">
                         {description}
                       </p>
                     </div>
