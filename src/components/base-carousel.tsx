@@ -81,14 +81,14 @@ export function BaseCarousel({ children, className = "" }: BaseCarouselProps) {
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex text-tfturquoise"
+        className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z hidden sm:flex text-tfturquoise"
         onClick={nextSlide}
       >
-        <ChevronRight className="h-4 w-4 text-tfturquoise" />
+        <ChevronRight className="h-4 w-4  text-tfturquoise" />
       </Button>
 
       {/* Mobile dots indicator */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center my-4 space-x-2">
         {children.map((_, index) => (
           <button
             key={index}

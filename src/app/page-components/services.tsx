@@ -11,6 +11,7 @@ import { useState, useRef, useEffect } from "react";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { Easing, motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 export function Services({
   privateHomes,
@@ -242,11 +243,14 @@ export function Services({
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 {enterprise?.enterpriseTitle || ""}
               </h3>
-              <img
-                src={urlFor(enterprise?.enterpriseImage).url()}
-                alt="Image"
-                className="rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%] w-[70%] h-[70%] object-cover"
-              />
+              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
+                <Image
+                  src={urlFor(enterprise?.enterpriseImage).url()}
+                  alt="Enterprise Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
+                />
+              </div>
             </div>
             <div
               className={`
@@ -287,11 +291,14 @@ export function Services({
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 {privateHomes?.privateTitle || ""}
               </h3>
-              <img
-                src={urlFor(privateHomes?.privateImage).url()}
-                alt="Image"
-                className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]"
-              />
+              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
+                <Image
+                  src={urlFor(privateHomes?.privateImage).url()}
+                  alt="Enterprise Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
+                />
+              </div>
             </div>
             <div
               className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
@@ -341,11 +348,14 @@ export function Services({
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 {b2b?.b2bTitle || ""}
               </h3>
-              <img
-                src={urlFor(b2b?.b2bImage).url()}
-                alt="Image"
-                className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]"
-              />
+              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
+                <Image
+                  src={urlFor(b2b?.b2bImage).url()}
+                  alt="Enterprise Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
+                />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -357,7 +367,7 @@ export function Services({
         transition={{ ...titleTransition, delay: 1.0 }}
       >
         <Link href="/kontakt">
-          <button className="mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-6 lg:py-4 lg:px-8 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
+          <button className="mx-8 sm:mx-auto block font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl bg-tforange my-8 md:my-10 lg:my-12 py-3 px-2 sm:px-6 lg:py-4 lg:px-8 rounded-2xl text-white tracking-wide cursor-pointer hover:scale-108 transition-transform duration-200 text-shadow-lg">
             Jetzt kostenlosen Beratungstermin vereinbaren
           </button>
         </Link>

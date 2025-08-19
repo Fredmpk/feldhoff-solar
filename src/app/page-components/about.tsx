@@ -22,7 +22,7 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
 
           {/* Top right - Company text */}
           <div className="sm:border-b border-zinc-200 lg:px-12 p-6 flex items-start">
-            <div className="text-right font-semibold w-full">
+            <div className="text-left font-semibold w-full">
               {about?.enterpriseText || ""}
             </div>
           </div>
