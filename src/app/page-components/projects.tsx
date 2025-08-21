@@ -59,7 +59,7 @@ export default function Projects({
           {projects.map((item) => (
             <CarouselCard
               key={item._id}
-              image={urlFor(item.projectsMainImage).url()}
+              image={urlFor(item.projectsMainImage).quality(60).url()}
               alt={item.altProjectsMainImage}
               title={item.projectsTitle}
               description={item.projectsText}

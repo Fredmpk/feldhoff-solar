@@ -245,8 +245,8 @@ export function Services({
               </h3>
               <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
                 <Image
-                  src={urlFor(enterprise?.enterpriseImage).url()}
-                  alt="Enterprise Image"
+                  src={urlFor(enterprise?.enterpriseImage).quality(60).url()}
+                  alt={enterprise?.enterpriseAltImage || "Enterprise Image"}
                   fill
                   style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
                 />
@@ -306,7 +306,7 @@ export function Services({
 
               <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
                 <Image
-                  src={urlFor(privateHomes?.privateImage).url()}
+                  src={urlFor(privateHomes?.privateImage).quality(60).url()}
                   alt={privateHomes?.privateAltImage || "Private Homes Image"}
                   fill
                   style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
@@ -374,8 +374,8 @@ export function Services({
               </h3>
               <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%] flex-shrink-0">
                 <Image
-                  src={urlFor(b2b?.b2bImage).url()}
-                  alt="Enterprise Image"
+                  src={urlFor(b2b?.b2bImage).quality(60).url()}
+                  alt={b2b?.b2bAltImage || "B2B Image"}
                   fill
                   style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
                 />

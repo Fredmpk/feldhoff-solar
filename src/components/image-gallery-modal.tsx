@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BaseCarousel } from "./base-carousel";
 import { urlFor } from "@/sanity/imageUrlBuilder";
+import Image from "next/image";
 
 interface ImageGalleryModalProps {
   isOpen: boolean;
@@ -43,7 +44,9 @@ export function ImageGalleryModal({
                 className="w-full h-[70vh] lg:h-[80vh] flex justify-center items-center p-4"
               >
                 <img
-                  src={urlFor(image.image).url() || "/placeholder.svg"}
+                  src={
+                    urlFor(image.image).quality(60).url() || "/placeholder.svg"
+                  }
                   alt={image.alt}
                   className="max-w-full max-h-full w-auto h-auto object-contain "
                 />

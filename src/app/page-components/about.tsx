@@ -15,7 +15,7 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
           <div className="flex sm:border-r border-b border-zinc-300 sm:p-12 p-6 items-start justify-center">
             <img
               className="w-1/2 sm:w-[80%]"
-              src={urlFor(about?.aboutImage).url()}
+              src={urlFor(about?.aboutImage).quality(60).url()}
               alt={about?.altAboutImage || "Unternehmenslogo"}
             />
           </div>
@@ -29,7 +29,7 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
           <div className="sm:hidden lg:px-12 lg:py-6 p-6 ml-auto mt-auto block xl:w-2/3 border-b border-t sm:border-b-0 sm:border-t-0 border-zinc-200">
             <img
               className="object-contain rounded-4xl"
-              src={urlFor(about?.founderImage).url()}
+              src={urlFor(about?.founderImage).quality(60).url()}
               alt={about?.altFounderImage || "Unternehmenslogo"}
             />
           </div>
@@ -44,7 +44,7 @@ export function About({ about }: { about: ABOUT_QUERYResult }) {
           <div className="hidden lg:px-12 lg:py-6 p-6 ml-auto mt-auto sm:block xl:w-2/3">
             <img
               className="object-contain rounded-4xl"
-              src={urlFor(about?.founderImage).url()}
+              src={urlFor(about?.founderImage).quality(60).url()}
               alt={about?.altFounderImage || "Unternehmenslogo"}
             />
           </div>
