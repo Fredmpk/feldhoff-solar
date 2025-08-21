@@ -12,6 +12,7 @@ export function Navbar() {
           <img
             className="w-auto h-20 sm:h-28 object-contain sm:pl-3 pt-1 pr-8 pb-3 md:pl-8 lg:pl-16"
             src="/img/logo-sonne.png"
+            alt="Logo Feldhoff Solar"
           ></img>
         </Link>
 
