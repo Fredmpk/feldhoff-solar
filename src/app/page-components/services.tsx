@@ -276,7 +276,8 @@ export function Services({
           <motion.div
             className={`transition-all duration-500 ease-out bg-tfturquoise rounded-xl overflow-hidden
               ${getCardWidth("privateHomes")}
-              ${hovered === "privateHomes" || expanded === "privateHomes" ? "flex flex-col items-center pb-6 w-full" : ""}
+              ${hovered === "privateHomes" ? "flex flex-row items-center pb-6 w-full" : ""}
+                ${expanded === "privateHomes" ? "flex flex-col items-center pb-6 w-full" : ""}
               ${hovered === "enterprise" || hovered === "b2b" ? "hidden" : ""}`}
             variants={cardVariants.privateHomes}
             initial="hidden"
@@ -286,15 +287,27 @@ export function Services({
             onClick={() => handleCardClick("privateHomes")}
           >
             <div
-              className={`bg-tfturquoise w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative `}
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
+              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0 hidden sm:flex`}
+            >
+              {hovered === "privateHomes" || expanded === "privateHomes" ? (
+                <PortableText
+                  value={privateHomes?.privateTextLeft || []}
+                  components={components}
+                />
+              ) : null}
+            </div>
+            <div
+              className={`bg-tfturquoise w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0 `}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 {privateHomes?.privateTitle || ""}
               </h3>
+
               <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
                 <Image
                   src={urlFor(privateHomes?.privateImage).url()}
-                  alt="Enterprise Image"
+                  alt={privateHomes?.privateAltImage || "Private Homes Image"}
                   fill
                   style={{ objectFit: "cover", borderRadius: "1rem" }} // rounded-2xl
                 />
@@ -302,11 +315,22 @@ export function Services({
             </div>
             <div
               className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
-              transition-opacity duration-300 delay-200 px-4`}
+              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0 sm:hidden flex`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
                 <PortableText
-                  value={privateHomes?.privateText || []}
+                  value={privateHomes?.privateTextLeft || []}
+                  components={components}
+                />
+              ) : null}
+            </div>
+            <div
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
+              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0`}
+            >
+              {hovered === "privateHomes" || expanded === "privateHomes" ? (
+                <PortableText
+                  value={privateHomes?.privateTextRight || []}
                   components={components}
                 />
               ) : null}
@@ -348,7 +372,7 @@ export function Services({
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
                 {b2b?.b2bTitle || ""}
               </h3>
-              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
+              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%] flex-shrink-0">
                 <Image
                   src={urlFor(b2b?.b2bImage).url()}
                   alt="Enterprise Image"

@@ -102,6 +102,7 @@ export type Enterprise = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  enterpriseAltImage?: string;
   enterpriseText?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -141,6 +142,7 @@ export type B2b = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  b2bAltImage?: string;
   b2bText?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -287,7 +289,26 @@ export type PrivateHomes = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  privateText?: Array<{
+  privateAltImage?: string;
+  privateTextLeft?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  privateTextRight?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -326,6 +347,7 @@ export type Hero = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  heroAltImage?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -461,7 +483,7 @@ export type HERO_QUERYResult = {
   } | null;
 } | null;
 // Variable: PRIVATE_HOMES_QUERY
-// Query: *[_type == "privateHomes"][0]{    _id,    privateTitle,    privateImage{    asset->{url}    },    privateText    }
+// Query: *[_type == "privateHomes"][0]{    _id,    privateTitle,    privateImage{    asset->{url}    },    privateAltImage,    privateTextLeft,    privateTextRight    }
 export type PRIVATE_HOMES_QUERYResult = {
   _id: string;
   privateTitle: string | null;
@@ -470,7 +492,26 @@ export type PRIVATE_HOMES_QUERYResult = {
       url: string | null;
     } | null;
   } | null;
-  privateText: Array<{
+  privateAltImage: string | null;
+  privateTextLeft: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  privateTextRight: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -490,7 +531,7 @@ export type PRIVATE_HOMES_QUERYResult = {
   }> | null;
 } | null;
 // Variable: ENTERPRISE_QUERY
-// Query: *[_type == "enterprise"][0]{    _id,    enterpriseTitle,    enterpriseImage{    asset->{url}    },    enterpriseText    }
+// Query: *[_type == "enterprise"][0]{    _id,    enterpriseTitle,    enterpriseImage{    asset->{url}    },    enterpriseAltImage,    enterpriseText    }
 export type ENTERPRISE_QUERYResult = {
   _id: string;
   enterpriseTitle: string | null;
@@ -499,6 +540,7 @@ export type ENTERPRISE_QUERYResult = {
       url: string | null;
     } | null;
   } | null;
+  enterpriseAltImage: string | null;
   enterpriseText: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -519,7 +561,7 @@ export type ENTERPRISE_QUERYResult = {
   }> | null;
 } | null;
 // Variable: B2B_QUERY
-// Query: *[_type == "b2b"][0]{    _id,    b2bTitle,    b2bImage{    asset->{url}    },    b2bText    }
+// Query: *[_type == "b2b"][0]{    _id,    b2bTitle,    b2bImage{    asset->{url}    },    b2bAltImage,    b2bText    }
 export type B2B_QUERYResult = {
   _id: string;
   b2bTitle: string | null;
@@ -528,6 +570,7 @@ export type B2B_QUERYResult = {
       url: string | null;
     } | null;
   } | null;
+  b2bAltImage: string | null;
   b2bText: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -657,9 +700,9 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"hero\"][0]{\n    _id,\n    heroTitle,\n    heroImage{\n    asset->{url}\n  },\n  }": HERO_QUERYResult;
-    "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateTitle,\n    privateImage{\n    asset->{url}\n    },\n    privateText\n    }": PRIVATE_HOMES_QUERYResult;
-    "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseTitle,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
-    "*[_type == \"b2b\"][0]{\n    _id,\n    b2bTitle,\n    b2bImage{\n    asset->{url}\n    },\n    b2bText\n    }": B2B_QUERYResult;
+    "*[_type == \"privateHomes\"][0]{\n    _id,\n    privateTitle,\n    privateImage{\n    asset->{url}\n    },\n    privateAltImage,\n    privateTextLeft,\n    privateTextRight\n    }": PRIVATE_HOMES_QUERYResult;
+    "*[_type == \"enterprise\"][0]{\n    _id,\n    enterpriseTitle,\n    enterpriseImage{\n    asset->{url}\n    },\n    enterpriseAltImage,\n    enterpriseText\n    }": ENTERPRISE_QUERYResult;
+    "*[_type == \"b2b\"][0]{\n    _id,\n    b2bTitle,\n    b2bImage{\n    asset->{url}\n    },\n    b2bAltImage,\n    b2bText\n    }": B2B_QUERYResult;
     "*[_type == \"about\"][0]{\n    _id,\n    aboutTitle,\n    aboutImage{\n    asset->{url}\n    },\n    altAboutImage,\n    enterpriseText,\n    founderImage{\n    asset->{url}\n    },\n    altFounderImage,\n    founderText\n    }": ABOUT_QUERYResult;
     "*[_type == \"advantagesFS\"][0]{\n    _id,\n    advantagesTitle,\n    subTitle,\n    titleS1,\n    textS1,\n    iconS1{\n    asset->{url}\n    },\n    titleS2,\n    textS2,\n    iconS2{\n    asset->{url}\n    },\n    titleS3,\n    textS3,\n    iconS3{\n    asset->{url}\n    },\n    titleS4,\n    textS4,\n    iconS4{\n    asset->{url}\n    },\n    }": ADVANTAGES_FS_QUERYResult;
     "*[_type == \"projects\"][]{\n    _id,\n    projectsTitle,\n    projectsMainImage{\n    asset->{url}\n    },\n    altProjectsMainImage,\nimageGallery[] {\ngalleryImage{\n    asset->{url}\n    },\n    altGalleryImage,\n    },\n    projectsText\n    }": PROJECTS_QUERYResult;

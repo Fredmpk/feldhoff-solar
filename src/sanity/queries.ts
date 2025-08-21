@@ -14,7 +14,9 @@ export const PRIVATE_HOMES_QUERY = defineQuery(`*[_type == "privateHomes"][0]{
     privateImage{
     asset->{url}
     },
-    privateText
+    privateAltImage,
+    privateTextLeft,
+    privateTextRight
     }`);
 
 export const ENTERPRISE_QUERY = defineQuery(`*[_type == "enterprise"][0]{
@@ -23,6 +25,7 @@ export const ENTERPRISE_QUERY = defineQuery(`*[_type == "enterprise"][0]{
     enterpriseImage{
     asset->{url}
     },
+    enterpriseAltImage,
     enterpriseText
     }`);
 export const B2B_QUERY = defineQuery(`*[_type == "b2b"][0]{
@@ -31,6 +34,7 @@ export const B2B_QUERY = defineQuery(`*[_type == "b2b"][0]{
     b2bImage{
     asset->{url}
     },
+    b2bAltImage,
     b2bText
     }`);
 
