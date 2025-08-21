@@ -76,13 +76,13 @@ export function Services({
   const [isReady, setIsReady] = useState<boolean>(false);
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "100px" });
 
   useEffect(() => {
     if (isInView) {
       const timer = setTimeout(() => {
         setIsReady(true);
-      }, 2000); // Dauer der longest fly-in animation
+      }, 500); // Dauer der longest fly-in animation
       return () => clearTimeout(timer);
     }
   }, [isInView]);
@@ -95,9 +95,9 @@ export function Services({
         opacity: 1,
         x: 0,
         transition: {
-          duration: 1.6,
+          duration: 1.2,
           ease: "easeInOut" as Easing,
-          delay: 0.4,
+          delay: 0.2,
         },
       },
     },
@@ -107,9 +107,9 @@ export function Services({
         opacity: 1,
         y: 0,
         transition: {
-          duration: 1.6,
+          duration: 1.2,
           ease: "easeInOut" as Easing,
-          delay: 0.6,
+          delay: 0.4,
         },
       },
     },
@@ -119,16 +119,16 @@ export function Services({
         opacity: 1,
         x: 0,
         transition: {
-          duration: 1.6,
+          duration: 1.2,
           ease: "easeInOut" as Easing,
-          delay: 0.4,
+          delay: 0.2,
         },
       },
     },
   };
 
   const titleTransition = {
-    duration: 0.8,
+    duration: 0.6,
     ease: "easeInOut" as Easing,
   };
 

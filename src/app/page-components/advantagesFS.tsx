@@ -15,7 +15,7 @@ export default function AdvantagesFS({
   advantagesFS: ADVANTAGES_FS_QUERYResult;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "100px" });
 
   // Animation variants for each square
   const squareVariants = {
@@ -92,6 +92,7 @@ export default function AdvantagesFS({
                   <img
                     src={urlFor(advantagesFS?.iconS1).url()}
                     className="w-8 h-8 md:w-12 md:h-12 absolute bottom-4 right-4 md:bottom-4 md:right-4 "
+                    alt="Icon"
                   />
                 </div>
               </motion.div>
@@ -114,6 +115,7 @@ export default function AdvantagesFS({
                 <img
                   src={urlFor(advantagesFS?.iconS2).url()}
                   className="w-8 h-8 md:w-12 md:h-12 absolute bottom-4 left-4 md:bottom-4 md:left-4"
+                  alt="Icon"
                 />
               </motion.div>
             </div>
@@ -134,6 +136,7 @@ export default function AdvantagesFS({
                   <img
                     src={urlFor(advantagesFS?.iconS3).url()}
                     className="w-8 h-8 md:w-12 md:h-12 absolute top-4 right-4 md:top-4 md:right-4"
+                    alt="Icon"
                   />
                   <p className="text-white text-left text-md font-semibold md:text-lg pt-1 md:pt-2">
                     {advantagesFS?.textS3}
@@ -159,6 +162,7 @@ export default function AdvantagesFS({
                 <img
                   src={urlFor(advantagesFS?.iconS4).url()}
                   className="w-8 h-8 md:w-12 md:h-12  flex-shrink-0 absolute top-4 left-4 md:top-4 md:left-4 "
+                  alt="Icon"
                 />
               </motion.div>
             </div>
