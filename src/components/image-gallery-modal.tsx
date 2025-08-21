@@ -30,7 +30,12 @@ export function ImageGalleryModal({
         {/* Header - Fixed height */}
         <div className="flex items-center justify-between p-4 border-b shrink-0 pb-4">
           <h2 className="text-xl font-semibold">{title} Gallery</h2>
-          <Button variant="ghost" size="icon" onClick={onClose}>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Close"
+            onClick={onClose}
+          >
             <X className="h-4 w-4" />
           </Button>
         </div>

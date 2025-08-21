@@ -75,6 +75,7 @@ export function BaseCarousel({ children, className = "" }: BaseCarouselProps) {
         size="icon"
         className=" absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z-10 hidden sm:flex text-tfturquoise"
         onClick={prevSlide}
+        aria-label="Previous slide"
       >
         <ChevronLeft className="h-4 w-4 text-tfturquoise" />
       </Button>
@@ -83,6 +84,7 @@ export function BaseCarousel({ children, className = "" }: BaseCarouselProps) {
         size="icon"
         className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg z hidden sm:flex text-tfturquoise"
         onClick={nextSlide}
+        aria-label="Next slide"
       >
         <ChevronRight className="h-4 w-4  text-tfturquoise" />
       </Button>
@@ -96,6 +98,7 @@ export function BaseCarousel({ children, className = "" }: BaseCarouselProps) {
               index === currentIndex ? "bg-blue-600" : "bg-gray-300"
             }`}
             onClick={() => setCurrentIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
