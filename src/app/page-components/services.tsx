@@ -241,7 +241,7 @@ export function Services({
               className={`bg-tforange w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0`}
             >
               <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
-                {enterprise?.enterpriseTitle || ""}
+                {enterprise?.enterpriseTitle || "Gewerbebetriebe"}
               </h3>
               <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
                 <Image
@@ -254,10 +254,10 @@ export function Services({
             </div>
             <div
               className={`
-    text-sm lg:text-lg
+    text-sm lg:text-base
     ${
       hovered === "enterprise" || expanded === "enterprise"
-        ? "sm:w-[60%] sm:h-86 lg:h-100 opacity-100 pt-8 px-4 transition-opacity duration-200 text-left"
+        ? "sm:w-[60%] sm:h-100 opacity-100 py-4 xl:py-8 px-8 transition-opacity duration-200 text-left"
         : "w-0 opacity-0 h-0 overflow-hidden"
     }
   `}
@@ -287,8 +287,8 @@ export function Services({
             onClick={() => handleCardClick("privateHomes")}
           >
             <div
-              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
-              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0 hidden sm:flex`}
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100 py-6" : " opacity-0"} text-left items-center justify-center text-sm lg:text-base
+              transition-opacity duration-300 delay-200 pl-8 flex-1 min-w-0 hidden sm:flex`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
                 <PortableText
@@ -315,7 +315,7 @@ export function Services({
             </div>
             <div
               className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
-              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0 sm:hidden flex`}
+              transition-opacity duration-300 delay-200 px-8 flex-1 min-w-0 sm:hidden flex`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
                 <PortableText
@@ -325,8 +325,8 @@ export function Services({
               ) : null}
             </div>
             <div
-              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100" : " opacity-0"} text-left items-center justify-center text-sm lg:text-lg
-              transition-opacity duration-300 delay-200 px-4 flex-1 min-w-0`}
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100 py-6" : " opacity-0"} text-left items-center justify-center text-sm lg:text-base
+              transition-opacity duration-300 delay-200  pr-8 flex-1 min-w-0`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
                 <PortableText
@@ -355,7 +355,7 @@ export function Services({
             onClick={() => handleCardClick("b2b")}
           >
             <div
-              className={`${(hovered === "b2b" && expansionPhase === 4) || expanded === "b2b" ? "block opacity-100 px-4 max-w-full sm:h-120 lg:h-152 xl:h-124 transition-opacity duration-300 delay-200" : "opacity-0 w-0 h-0 overflow-hidden"} text-sm lg:text-lg pt-8
+              className={`${(hovered === "b2b" && expansionPhase === 4) || expanded === "b2b" ? "block opacity-100 px-4 max-w-full sm:h-100 md:h-92 lg:h-100 transition-opacity duration-300 delay-200 pl-8" : "opacity-0 w-0 h-0 overflow-hidden"} text-sm lg:text-base pt-8 
                duration-300 delay-200`}
             >
               {(hovered === "b2b" && expansionPhase === 4) ||
