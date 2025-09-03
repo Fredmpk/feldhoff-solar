@@ -276,7 +276,7 @@ export function Services({
           <motion.div
             className={`transition-all duration-500 ease-out bg-tfturquoise rounded-xl overflow-hidden
               ${getCardWidth("privateHomes")}
-              ${hovered === "privateHomes" ? "flex flex-row items-center pb-6 w-full" : ""}
+              ${hovered === "privateHomes" ? "flex flex-row pb-6 w-full" : ""}
                 ${expanded === "privateHomes" ? "flex flex-col items-center pb-6 w-full" : ""}
               ${hovered === "enterprise" || hovered === "b2b" ? "hidden" : ""}`}
             variants={cardVariants.privateHomes}
@@ -287,7 +287,7 @@ export function Services({
             onClick={() => handleCardClick("privateHomes")}
           >
             <div
-              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100 py-6" : " opacity-0"} text-left items-center justify-center text-sm lg:text-base
+              className={`${hovered === "privateHomes" || expanded === "privateHomes" ? "opacity-100 py-6" : " opacity-0"} text-left  justify-center text-sm lg:text-base
               transition-opacity duration-300 delay-200 pl-8 flex-1 min-w-0 hidden sm:flex`}
             >
               {hovered === "privateHomes" || expanded === "privateHomes" ? (
@@ -300,11 +300,15 @@ export function Services({
             <div
               className={`bg-tfturquoise w-64 sm:w-50 md:w-54 lg:w-72 xl:w-82 2xl:w-96   h-64 sm:h-50 md:h-54 lg:h-72 xl:h-82 2xl:h-96   rounded-xl relative flex-shrink-0 `}
             >
-              <h3 className="absolute top-1/16 left-1/2 transform -translate-x-1/2 font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide">
+              <h3
+                className={`   font-bold text-white text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide absolute top-1/16 left-1/2 transform -translate-x-1/2`}
+              >
                 {privateHomes?.privateTitle || ""}
               </h3>
 
-              <div className="rounded-2xl w-[70%] h-[70%] object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]">
+              <div
+                className={`rounded-2xl w-[70%] h-[70%] object-cover transform -translate-x-1/2 -translate-y-[40%] absolute top-1/2 left-1/2`}
+              >
                 <Image
                   src={urlFor(privateHomes?.privateImage).quality(60).url()}
                   alt={privateHomes?.privateAltImage || "Private Homes Image"}
