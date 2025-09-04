@@ -22,7 +22,7 @@ export const send = async (emailFormData: z.infer<typeof formSchema>) => {
 
   try {
     await resend.emails.send({
-      from: `Acme <${process.env.RESEND_FROM_EMAIL}>`,
+      from: `Feldhoff Solar <${process.env.RESEND_FROM_EMAIL}>`,
       to: [emailFormData.email],
       subject: "Danke für Ihre Anfrage",
       html, // now this is a string
