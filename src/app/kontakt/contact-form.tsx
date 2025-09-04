@@ -1,4 +1,5 @@
 "use client";
+import { useState, startTransition } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,11 +22,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { formSchema } from "@/lib/schemas";
-import { startTransition } from "react";
-import { sendAction } from "./form-action";
 import { send } from "@/lib/email";
+import { sendAction } from "./form-action";
 
 export default function ContactForm() {
+  const [success, setSuccess] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,12 +39,25 @@ export default function ContactForm() {
     },
   });
 
-  // 2. Define a submit handler.
+  // Submit handler
   function onSubmit(values: z.infer<typeof formSchema>) {
-    startTransition(() => {
-      send(values);
+    startTransition(async () => {
+      try {
+        await send(values);
+        setSuccess(true);
+
+        // reset form fields
+        form.reset();
+
+        // reset success state after 3 seconds
+        setTimeout(() => setSuccess(false), 3000);
+      } catch (error) {
+        console.error(error);
+        setSuccess(false);
+      }
     });
   }
+
   return (
     <div className="flex items-center justify-center min-h-[70vh] p-4 w-full">
       <Card className="w-full">
@@ -143,8 +158,11 @@ export default function ContactForm() {
                   )}
                 />
               </div>
-              <Button type="submit" className="w-full bg-tforange">
-                Abschicken
+              <Button
+                type="submit"
+                className={`w-full ${success ? "bg-green-600" : "bg-tforange"}`}
+              >
+                {success ? "Gesendet ✅" : "Abschicken"}
               </Button>
             </form>
           </Form>
