@@ -10,22 +10,21 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { formSchema } from "@/lib/schemas";
-import { send } from "@/lib/email";
 import { startTransition } from "react";
 import { sendAction } from "./form-action";
+import { send } from "@/lib/email";
+
 export default function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,7 +42,6 @@ export default function ContactForm() {
     startTransition(() => {
       send(values);
     });
-    console.log(values);
   }
   return (
     <div className="flex items-center justify-center min-h-[70vh] p-4 w-full">
@@ -116,7 +114,7 @@ export default function ContactForm() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Telefon</FormLabel>
+                        <FormLabel>Telefon (optional)</FormLabel>
                         <FormControl>
                           <Input placeholder="Telefon" {...field} />
                         </FormControl>
