@@ -11,7 +11,8 @@ const ralewaySans = Raleway({
 
 export const metadata: Metadata = {
   title: "feldhoff-solar",
-  description: "Komplettlösungen für Photovoltaik und Energiesysteme",
+  description:
+    "Komplettlösungen für Photovoltaik und Energiesysteme in Leipzig",
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
