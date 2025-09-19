@@ -26,7 +26,7 @@ export function Hero({ hero }: { hero: HERO_QUERYResult }) {
       }}
     >
       <div className="text-center mx-6 mt-12 sm:mx-8 sm:mt-16 md:m-16 lg:m-18">
-        <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide">
+        <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl tracking-wide leading-relaxed">
           {hero?.heroTitle || ""}
         </h1>
 
